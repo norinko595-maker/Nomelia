@@ -9,9 +9,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          submodules: recursive
-          fetch-depth: 0
+
+      - name: Init Submodules
+        run: |
+          git submodule sync --recursive
+          git submodule update --init --recursive
 
       - name: Setup Java
         uses: actions/setup-java@v4
